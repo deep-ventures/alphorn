@@ -1,6 +1,9 @@
 [run]
+source = alphorn
 omit =
-    */tests/*
+    tests/*
 
 [report]
 fail_under=95
+omit =
+    tests/*

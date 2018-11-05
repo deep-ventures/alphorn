@@ -11,6 +11,7 @@ pytest-cov = "*"
 pytest-xdist = "*"
 pylint = "*"
 autopep8 = "*"
+codecov = "*"
 
 [requires]
 python_version = "3.6"
