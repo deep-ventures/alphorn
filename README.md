@@ -5,4 +5,25 @@
 
 Alphorn is a simple Python package to handle Lambda invocations routed by the AWS API Gateway with a `{proxy+}` configuration.
 
-This package takes free inspiration from [Chalice]() and [Lambdarest]() but raises from the frustration of using complex Python packages, hence having a naive approach, remaining very simple, and probably lacking loads of features.
+This package takes free inspiration from [Chalice](https://github.com/aws/chalice) and [Lambdarest](https://github.com/trustpilot/python-lambdarest) but only attempts to implement routing functionalities, hence having a naive approach, remaining very simple, and probably lacking loads of features.
+
+## How to use
+
+define your lambda.py file as below, and configure your AWS lambda handler to be lambda.run
+
+```python
+from alphorn import Alphorn
+
+app = Alphorn()
+
+@app.route('/sample')
+def sample():
+    return {
+        'message': 'sample',
+    }
+
+def run(event, context):
+    """lambda handler
+    """
+    return app.handle(event)
+```
