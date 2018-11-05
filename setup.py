@@ -12,11 +12,10 @@ with open(os.path.join(BASE_DIR, NAME, 'version.py')) as v_file:
 with open('README.md') as readme_file:
     README = readme_file.read()
 
-
 install_requires = [
 ]
 
-test_requires = [
+tests_require = [
     'pytest',
     'pytest-cov',
     'pytest-xdist',
@@ -36,7 +35,7 @@ setup(
     install_requires=install_requires,
     license="MIT",
     keywords='alphorn lambda aws router',
-    test_requires=test_requires,
+    tests_require=tests_require,
     include_package_data=True,
     zip_safe=False,
     classifiers=[
