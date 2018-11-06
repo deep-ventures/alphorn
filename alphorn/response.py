@@ -1,19 +1,23 @@
 import json
 
 class Response:
-    _default_headers = {
+    _cors_headers = {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": True,
     }
 
-    def __init__(self, headers=None):
+    def __init__(self, cors=True, headers=None):
+        self._cors = cors
         self._headers = headers
 
     @property
     def headers(self):
-        if self._headers is not None:
-            self._default_headers.update(self._headers)
-        return self._default_headers
+        out = {}
+        if self._headers:
+            out.update(self._headers)
+        if self._cors:
+            out.update(self._cors_headers)
+        return out
 
     def __call__(self, body={}, status_code=200):
         return {

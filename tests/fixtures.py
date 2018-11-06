@@ -5,10 +5,10 @@ from alphorn import Alphorn
 @pytest.fixture
 def sample_app_200():
     app = Alphorn()
-    @app.route('/config/123')
-    def sample():
+    @app.route('/config/{blah}')
+    def sample(blah):
         return {
-            'message': 'sample',
+            'message': blah,
         }
     return app
 

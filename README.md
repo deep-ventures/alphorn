@@ -5,7 +5,7 @@
 
 Alphorn is a simple Python package to handle Lambda invocations routed by the AWS API Gateway with a `{proxy+}` configuration.
 
-This package takes free inspiration from [Chalice](https://github.com/aws/chalice) and [Lambdarest](https://github.com/trustpilot/python-lambdarest) but only attempts to implement routing functionalities, hence having a naive approach, remaining very simple, and probably lacking loads of features.
+This package takes free inspiration (read: steals code) from [Chalice](https://github.com/aws/chalice) and [Lambdarest](https://github.com/trustpilot/python-lambdarest) but only attempts to implement routing functionalities, hence having a naive approach, remaining very simple, and probably lacking loads of features.
 
 ## How to use
 
@@ -16,10 +16,10 @@ from alphorn import Alphorn
 
 app = Alphorn()
 
-@app.route('/sample')
-def sample():
+@app.route('/sample/{greeting}')
+def sample(greeting):
     return {
-        'message': 'sample',
+        'message': str(greeting),
     }
 
 def run(event, context):
