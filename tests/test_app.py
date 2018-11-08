@@ -6,7 +6,7 @@ from alphorn import Alphorn, Response, version
 
 
 def test_version():
-    assert version.__version__ == '0.2'
+    assert version.__version__ == '0.2.1'
 
 
 def test_event(sample_event):
