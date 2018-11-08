@@ -1,7 +1,10 @@
+import logging
 from collections import defaultdict
 
 from .route import RouteEntry
 from .response import Response
+
+LOGGER = logging.getLogger('alphorn')
 
 
 class Alphorn:
@@ -42,8 +45,8 @@ class Alphorn:
                 m = route_entry.match(path)
                 if m is not None:
                     return route_entry, m
-            except Exception:
-                pass
+            except Exception as e:
+                LOGGER.info(f'could not find route {route} - error: {str(e)}')
         return None, None
 
     def handle(self, event):
@@ -57,5 +60,6 @@ class Alphorn:
             body = route_entry.view_func(**match.groupdict())
             response = Response(route_entry.cors)
             return response(body)
-        except Exception:
+        except Exception as e:
+            LOGGER.error(f'error while handling lambda invocation - {str(e)}')
             return Response()(status_code=404)
